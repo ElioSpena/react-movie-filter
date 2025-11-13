@@ -4,21 +4,25 @@ import filmsList from "./assets/data/filmsList"
 function App() {
 const [films, setFilms] = useState(filmsList);
 const [genre, setGenre] = useState("");
-console.log(genre);
+const [filteredText, setFilteredText] = useState("");
+
 
 
 useEffect( () => {
-  genre === "" ? setFilms(filmsList)
+  genre === "Tutti i Generi" ? setFilms(filmsList)
    : 
  setFilms(filmsList.filter((curFilm) => curFilm.genre.includes(genre)));
+ setFilms(filmsList.filter((curFilm) => curFilm.title.toLocaleLowerCase().includes(filteredText.toLowerCase()) ))
 },
- [genre])
+ [genre, filteredText])
   
   return (
     <>
       <section>
-
-          <form>
+        
+{/* filtro generi */}
+<h3>Filtra per genere</h3>
+          
               <select
               value={genre}
               onChange={ (event)=>
@@ -32,9 +36,24 @@ useEffect( () => {
                   {curFilm.genre}
                 </option>
                 )}
-                <option value=""></option>
+                <option value="">Tutti i Generi</option>
               </select>
-        </form>
+       
+
+ {/* filtro titolo */} 
+ <h3>Filtra per titolo</h3>
+           
+      <input
+      value={filteredText}
+      onChange={(event) =>
+        setFilteredText(event.target.value)
+      }
+       type="text" />
+       
+
+
+
+{/* lista films */}
 
         <ul>
 
@@ -45,8 +64,7 @@ useEffect( () => {
             )}
 
         </ul>
-
-      
+  
 
 
       </section>
