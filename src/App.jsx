@@ -8,16 +8,27 @@ const [filteredText, setFilteredText] = useState("");
 
 
 
-useEffect( () => {
-  genre === "Tutti i Generi" ? setFilms(filmsList)
-   : 
- setFilms(filmsList.filter((curFilm) => curFilm.genre.includes(genre)));
- setFilms(filmsList.filter((curFilm) => curFilm.title.toLocaleLowerCase().includes(filteredText.toLowerCase()) ))
-},
- [genre, filteredText])
+useEffect(() => {
+        
+        let results = filmsList;
+
+        if (genre) { 
+            results = results.filter((curFilm) => 
+              curFilm.genre.includes(genre));
+        }
+
+        if (filteredText) {
+            results = results.filter((curFilm) =>
+                curFilm.title.toLowerCase().includes(filteredText.trim().toLowerCase())
+            );
+        }
+
+        setFilms(results);
+
+    }, [genre, filteredText]);
   
   return (
-    <>
+    <> 
       <section>
         
 {/* filtro generi */}
