@@ -6,26 +6,14 @@ const [films, setFilms] = useState(filmsList);
 const [genre, setGenre] = useState("");
 const [filteredText, setFilteredText] = useState("");
 
-
-
 useEffect(() => {
-        
-        let results = filmsList;
-
-        if (genre) { 
-            results = results.filter((curFilm) => 
-              curFilm.genre.includes(genre));
-        }
-
-        if (filteredText) {
-            results = results.filter((curFilm) =>
-                curFilm.title.toLowerCase().includes(filteredText.trim().toLowerCase())
-            );
-        }
-
-        setFilms(results);
-
-    }, [genre, filteredText]);
+  setFilms(
+    filmsList.filter(film =>
+      (film.genre.includes(genre)) &&
+      (film.title.toLowerCase().includes(filteredText.trim().toLowerCase()))
+    )
+  );
+}, [genre, filteredText]);
   
   return (
     <> 
@@ -41,11 +29,11 @@ useEffect(() => {
               }
               name="films">
                 {filmsList.map((curFilm, index) => 
-                <option
+               ( <option
                 value={curFilm.genre}
                  key={index}>
                   {curFilm.genre}
-                </option>
+                </option>)
                 )}
                 <option value="">Tutti i Generi</option>
               </select>
