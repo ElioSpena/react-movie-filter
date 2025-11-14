@@ -9,7 +9,7 @@ export default function Header({
 }) {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-transparent fixed-top">
+      <nav className="navbar navbar-expand-lg bg-dark fixed-top">
         <div className="container">
           <a className="navbar-brand" href="http://localhost:5173/">
             <h1 className="text-danger fw-bold">Nesplix</h1>
