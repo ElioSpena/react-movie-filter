@@ -1,7 +1,13 @@
 function FilterGenre({ valueGenre, onSelectChange, genreList }) {
   return (
     <>
-      <select value={valueGenre} onChange={onSelectChange} name="films">
+      <select
+        data-bs-theme="dark"
+        className="form-select bg-dark bg-opacity-50"
+        value={valueGenre}
+        onChange={onSelectChange}
+        name="films"
+      >
         <option value="">Tutti i Generi</option>
 
         {genreList.map((curGenre, index) => (
@@ -17,6 +23,8 @@ function FilterGenre({ valueGenre, onSelectChange, genreList }) {
 function FilterTitle({ valueText, onChangeTitle }) {
   return (
     <input
+      data-bs-theme="dark"
+      className="form-control bg-dark bg-opacity-50"
       placeholder="Cerca per titolo..."
       value={valueText}
       onChange={onChangeTitle}

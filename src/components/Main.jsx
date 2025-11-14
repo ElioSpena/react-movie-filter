@@ -9,15 +9,15 @@ export default function Main({
   onSubmitNewFilm,
 }) {
   return (
-    <main>
-      <Films films={films} />
-
+    <main className="min-vh-100 bg-dark">
       <Form
         newFilmValue={newFilmValue}
         text={text}
         onChangeNewFilm={onChangeNewFilm}
         onSubmitNewFilm={onSubmitNewFilm}
       />
+
+      <Films films={films} />
     </main>
   );
 }

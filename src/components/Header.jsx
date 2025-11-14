@@ -9,10 +9,10 @@ export default function Header({
 }) {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-secondary-subtle">
+      <nav className="navbar navbar-expand-lg bg-transparent fixed-top">
         <div className="container">
           <a className="navbar-brand" href="http://localhost:5173/">
-            <h1>Nesplix</h1>
+            <h1 className="text-danger fw-bold">Nesplix</h1>
           </a>
           <div className="d-flex gap-4">
             <FilterTitle
