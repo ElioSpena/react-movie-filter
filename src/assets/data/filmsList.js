@@ -7,5 +7,13 @@ const filmsList = [
   { title: 'Pulp Fiction', genre: 'Thriller' },
 ];
 
-export default filmsList
+const genreList = [];
+filmsList.forEach((film) => 
+!genreList.includes(film.genre) && genreList.push(film.genre)
+)
+
+console.log(genreList);
+
+
+export {filmsList, genreList}
 

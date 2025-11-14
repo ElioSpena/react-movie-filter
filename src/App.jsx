@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import filmsList from "./assets/data/filmsList"
+import {filmsList, genreList} from "./assets/data/filmsList"
 
 function App() {
 const [films, setFilms] = useState(filmsList);
-const [genre, setGenre] = useState("");
+const [genre, setGenre] = useState(genreList);
 const [filteredText, setFilteredText] = useState("");
 
 useEffect(() => {
@@ -28,11 +28,11 @@ useEffect(() => {
                 setGenre(event.target.value)
               }
               name="films">
-                {filmsList.map((curFilm, index) => 
+                {genreList.map((curGenre, index) => 
                ( <option
-                value={curFilm.genre}
+                value={curGenre}
                  key={index}>
-                  {curFilm.genre}
+                  {curGenre}
                 </option>)
                 )}
                 <option value="">Tutti i Generi</option>
