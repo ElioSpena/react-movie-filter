@@ -1,76 +1,47 @@
-import { useEffect, useState } from "react"
-import {filmsList, genreList} from "./assets/data/filmsList"
+import { useEffect, useState } from "react";
+import { filmsList, genreList } from "./assets/data/filmsList";
+import Header from "./components/Header";
+import Main from "./components/Main";
 
 function App() {
-const [films, setFilms] = useState(filmsList);
-const [genre, setGenre] = useState(genreList);
-const [filteredText, setFilteredText] = useState("");
+  const [films, setFilms] = useState(filmsList);
+  const [allFilms, setAllFilms] = useState(filmsList);
+  const [genre, setGenre] = useState("");
+  const [filteredText, setFilteredText] = useState("");
+  const [newFilm, SetNewFilm] = useState("");
 
-useEffect(() => {
-  setFilms(
-    filmsList.filter(film =>
-      (film.genre.includes(genre)) &&
-      (film.title.toLowerCase().includes(filteredText.trim().toLowerCase()))
-    )
-  );
-}, [genre, filteredText]);
-  
+  useEffect(() => {
+    setFilms(
+      allFilms.filter(
+        (film) =>
+          film.genre.includes(genre) &&
+          film.title.toLowerCase().includes(filteredText.trim().toLowerCase())
+      )
+    );
+  }, [genre, filteredText, allFilms]);
+
   return (
-    <> 
-      <section>
-        
-{/* filtro generi */}
-<h3>Filtra per genere</h3>
-          
-              <select
-              value={genre}
-              onChange={ (event)=>
-                setGenre(event.target.value)
-              }
-              name="films">
-                {genreList.map((curGenre, index) => 
-               ( <option
-                value={curGenre}
-                 key={index}>
-                  {curGenre}
-                </option>)
-                )}
-                <option value="">Tutti i Generi</option>
-              </select>
-       
+    <>
+      <Header
+        genre={genre}
+        onSelectChange={(event) => setGenre(event.target.value)}
+        genreList={genreList}
+        filteredText={filteredText}
+        onChangeTitle={(event) => setFilteredText(event.target.value)}
+      />
 
- {/* filtro titolo */} 
- <h3>Filtra per titolo</h3>
-           
-      <input
-      value={filteredText}
-      onChange={(event) =>
-        setFilteredText(event.target.value)
-      }
-       type="text" />
-       
-
-
-
-{/* lista films */}
-
-        <ul>
-
-            {films.map((curFilm, index) => 
-            <li key={index}>
-              <a href="">{curFilm.title}</a>
-            </li>
-            )}
-
-        </ul>
-  
-
-
-      </section>
-
+      <Main
+        films={films}
+        newFilmValue={newFilm}
+        text={"Aggiungi un Film"}
+        onChangeNewFilm={(event) => SetNewFilm(event.target.value)}
+        onSubmitNewFilm={(event) => {
+          event.preventDefault();
+          setAllFilms((prev) => [...prev, { title: newFilm, genre: "" }]);
+        }}
+      />
     </>
-  )
-
+  );
 }
 
-export default App
+export default App;
